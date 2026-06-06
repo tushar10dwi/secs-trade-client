@@ -16,7 +16,7 @@ A full-stack web app for KIIT students to trade their registered sections with o
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Link your Supabase project
 
@@ -99,8 +99,8 @@ For Vercel: just `vercel --prod` from the project root.
 Visit `/admin` — default credentials (change before deploying!):
 
 ```
-Email:    admin@secstrade.kiit
-Password: SecsTrade@Admin2024
+Email:    admin
+Password: 1234
 ```
 
 Change these in `src/admin/AdminLogin.jsx`.
