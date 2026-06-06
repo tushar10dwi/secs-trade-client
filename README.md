@@ -16,7 +16,7 @@ A full-stack web app for KIIT students to trade their registered sections with o
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Link your Supabase project
 
