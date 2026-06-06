@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Admin credentials stored here — change before deploying!
-const ADMIN_EMAIL = "admin@secstrade.kiit";
-const ADMIN_PASS = "SecsTrade@Admin2024";
+const ADMIN_EMAIL = "secstrade.kiit";
+const ADMIN_PASS = "qwerty00";
 
 export default function AdminLogin() {
   const navigate = useNavigate();

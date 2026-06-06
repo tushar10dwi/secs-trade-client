@@ -53,6 +53,8 @@ export default function SetupPage() {
     if (error) { toast(error.message, "error"); return; }
     toast("Profile saved!", "success");
     await refreshProfile();
+
+    // navigate("/browse");
   }
 
   return (
@@ -70,7 +72,7 @@ export default function SetupPage() {
         <div className="card" style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div>
             <label className="label">Full Name</label>
-            <input className="input-field" placeholder="Rahul Sharma" value={form.name}
+            <input className="input-field" placeholder="Tushar Dwivedi" value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })} />
           </div>
           <div>
@@ -101,7 +103,7 @@ export default function SetupPage() {
                 ))}
               </div>
             ) : (
-              <input className="input-field" placeholder="e.g. S1-G1" value={form.current_section}
+              <input className="input-field" placeholder="e.g. CSE-1" value={form.current_section}
                 onChange={(e) => setForm({ ...form, current_section: e.target.value.toUpperCase() })} />
             )}
           </div>
@@ -123,7 +125,7 @@ export default function SetupPage() {
                 ))}
               </div>
             ) : (
-              <input className="input-field" placeholder="e.g. S1-A1" value={form.wanted_section}
+              <input className="input-field" placeholder="e.g. CSE-2" value={form.wanted_section}
                 onChange={(e) => setForm({ ...form, wanted_section: e.target.value.toUpperCase() })} />
             )}
           </div>

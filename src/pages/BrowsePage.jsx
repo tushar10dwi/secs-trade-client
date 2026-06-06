@@ -35,9 +35,9 @@ export default function BrowsePage() {
     const sentSet = new Set((sent || []).map((r) => r.receiver_id));
     setSentRequests(sentSet);
 
-    // Filter: show only people who have my wanted section (they have what I want)
+    // Filter: show only people who want my section
     const filtered = (allUsers || []).filter(
-      (u) => u.current_section === profile.wanted_section
+      (u) => u.wanted_section === profile.current_section
     );
 
     setUsers(filtered);
@@ -92,7 +92,7 @@ export default function BrowsePage() {
       <div className="page-header">
         <h2>Browse</h2>
         <p>
-          People with <strong style={{ color: "var(--text)" }}>{profile.wanted_section}</strong> looking to trade.{" "}
+          People who want <strong style={{ color: "var(--text)" }}>{profile.wanted_section}</strong> looking to trade.{" "}
           <span style={{ color: "var(--accent)" }}>Red = mutual match</span>
         </p>
       </div>
@@ -110,9 +110,9 @@ export default function BrowsePage() {
             />
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 16px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius)", fontSize: 13 }}>
-            <span className="section-tag">{profile.current_section}</span>
+            <span className="section-tag" style={{whiteSpace:"nowrap"}}>{profile.current_section}</span>
             <ArrowRight size={14} style={{ color: "var(--text-dim)" }} />
-            <span className="section-tag" style={{ borderColor: "rgba(255,59,59,0.4)", color: "var(--accent)", background: "var(--accent-dim)" }}>
+            <span className="section-tag" style={{ whiteSpace: "nowrap", borderColor: "rgba(255,59,59,0.4)", color: "var(--accent)", background: "var(--accent-dim)" }}>
               {profile.wanted_section}
             </span>
           </div>
@@ -154,9 +154,9 @@ export default function BrowsePage() {
                   </div>
 
                   <div className="section-trade">
-                    <span className="section-tag">{user.current_section}</span>
+                    <span className="section-tag" style={{whiteSpace:"nowrap"}}>{user.current_section}</span>
                     <span className="arrow-icon"><ArrowRight size={14} /></span>
-                    <span className="section-tag">{user.wanted_section}</span>
+                    <span className="section-tag" style={{whiteSpace:"nowrap"}}>{user.wanted_section}</span>
                     <span style={{ fontSize: 11, color: "var(--text-dim)", marginLeft: 4 }}>
                       {user.wanted_section === profile.current_section ? "← wants yours" : ""}
                     </span>
