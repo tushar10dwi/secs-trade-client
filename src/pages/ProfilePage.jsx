@@ -37,6 +37,7 @@ export default function ProfilePage() {
     if (error) { toast(error.message, "error"); return; }
     toast("Profile updated!", "success");
     await refreshProfile();
+    navigate("/browse");
   }
 
   return (
