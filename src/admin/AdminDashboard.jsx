@@ -55,8 +55,14 @@ export default function AdminDashboard() {
   }
 
   async function resolveReport(report) {
+    await supabase.from("blocks").upsert({
+    blocker_id: report.reporter_id,
+    blocked_id: report.reported_id,
+    });
+
     await supabase.from("reports").update({ resolved: true }).eq("id", report.id);
     fetchAll();
+    toast("Report resolved and user blocked.", "success");
   }
 
   async function deleteFeedback(fb) {

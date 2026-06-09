@@ -17,7 +17,23 @@ export default function ChatPage() {
   const [loading, setLoading] = useState(true);
   const bottomRef = useRef(null);
   const subRef = useRef(null);
+  // ---------------------------------------
+  const [isBlocked, setIsBlocked] = useState(false);
 
+  useEffect(() => {
+    if (partner) checkBlocked();
+  }, [partner]);
+
+  async function checkBlocked() {
+    const { data } = await supabase
+      .from("blocks")
+      .select("id")
+      .eq("blocker_id", partner.id)
+      .eq("blocked_id", session.user.id)
+      .single();
+    setIsBlocked(!!data);
+  }
+  //-----------------------------------------
   useEffect(() => { if (session) fetchRooms(); }, [session]);
 
   useEffect(() => {
@@ -220,21 +236,30 @@ export default function ChatPage() {
         </div>
 
         {/* Input */}
-        <div className="chat-input-row">
-          <input
-            value={newMsg}
-            onChange={(e) => setNewMsg(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
-            placeholder="Type a message..."
-          />
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={sendMessage}
-            disabled={!newMsg.trim() || sending}
-          >
-            <Send size={14} />
-          </button>
-        </div>
+        {isBlocked ? (
+          <div style={{
+            padding: "14px 20px",
+            borderTop: "1px solid var(--border)",
+            background: "var(--surface)",
+            textAlign: "center",
+            fontSize: 13,
+            color: "var(--accent)"
+          }}>
+            You have been blocked by this user.
+          </div>
+        ) : (
+          <div className="chat-input-row">
+            <input
+              value={newMsg}
+              onChange={(e) => setNewMsg(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
+              placeholder="Type a message..."
+            />
+            <button className="btn btn-primary btn-sm" onClick={sendMessage} disabled={!newMsg.trim() || sending}>
+              <Send size={14} />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

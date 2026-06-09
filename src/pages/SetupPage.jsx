@@ -54,7 +54,7 @@ export default function SetupPage() {
     toast("Profile saved!", "success");
     await refreshProfile();
 
-    // navigate("/browse");
+    navigate("/browse");
   }
 
   return (
